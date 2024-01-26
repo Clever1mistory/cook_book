@@ -42,10 +42,10 @@ def show_recipes_without_product(request):
 
     recipes = Recipe.objects.annotate(
         total_weight=Sum(
-        Case(
-            When(ingredient__product=product, then='ingredient__weight'),
-            default=0,
-            output_field=IntegerField()
+            Case(
+                When(ingredient__product=product, then='ingredient__weight'),
+                default=0,
+                output_field=IntegerField()
                 )
             )
         ).filter(Q(total_weight__lt=10) | Q(total_weight=None))
