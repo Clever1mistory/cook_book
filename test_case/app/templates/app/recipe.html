@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Рецепты без продукта</title>
+</head>
+<body>
+    <h1>Рецепты без продукта</h1>
+    <form action="{% url 'show_recipes_without_product' %}" method="GET">
+        <label for="product_id">Введите id продукта:</label>
+        <input type="text" id="product_id" name="product_id"><br><br>
+        <input type="submit" value="Показать Рецепты">
+    </form>
+    <br>
+    {% if recipes %}
+        <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Название</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for recipe in recipes %}
+                    <tr>
+                        <td>{{ recipe.id }}</td>
+                        <td>{{ recipe.name }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Не найдено.</p>
+    {% endif %}
+</body>
+</html>
